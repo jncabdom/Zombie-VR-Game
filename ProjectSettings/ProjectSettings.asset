@@ -333,6 +333,9 @@ PlayerSettings:
     m_Devices:
     - Oculus
     - OpenVR
+  - m_BuildTarget: Android
+    m_Enabled: 0
+    m_Devices: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
@@ -586,6 +589,7 @@ PlayerSettings:
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0
+  assemblyVersionValidation: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1

@@ -29,6 +29,13 @@ public class PlayerController : MonoBehaviour
   // Jump
   public float jumpHeight = 3f;
 
+  // Crouch
+  private bool crouch = false;
+  public Transform playerCamera;
+  public float timeToReachObjective = 0.5f;
+  private Vector3 crouchingPosition = new Vector3(0, 2.1f, 0);
+  private Vector3 regularPosition = new Vector3(0, 3.03f, 0);
+
   // Gets the CharacterController from the GameObject
   private void Start() {
     controller = gameObject.GetComponent<CharacterController>();
@@ -39,6 +46,7 @@ public class PlayerController : MonoBehaviour
     Move();
     CalculateGravity();
     Jump();
+    Crouch();
    }
 
   // Get the movement in the x and z axis then we add the speed and the direction of our gameObject
@@ -64,5 +72,15 @@ public class PlayerController : MonoBehaviour
   private void Jump() {
     if (Input.GetButtonDown("Jump") && isGrounded)
       velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
+  }
+
+  private void Crouch() {
+    if (Input.GetButtonDown("Crouch") && isGrounded)
+      crouch = !crouch;
+    if (crouch) {
+      playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingPosition, timeToReachObjective * Time.deltaTime);
+    } else {
+      playerCamera.position = Vector3.MoveTowards(playerCamera.position, regularPosition, timeToReachObjective * Time.deltaTime);
+    }
   }
 }
