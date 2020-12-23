@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 { 
   // Player Movement
   public float moveSpeed = 12f;
+  public float crouchSpeed = 6f;
   private CharacterController controller;
 
   // Gravity
@@ -32,9 +33,9 @@ public class PlayerController : MonoBehaviour
   // Crouch
   private bool crouch = false;
   public Transform playerCamera;
-  public float timeToReachObjective = 0.5f;
-  private Vector3 crouchingPosition = new Vector3(0, 2.1f, 0);
-  private Vector3 regularPosition = new Vector3(0, 3.03f, 0);
+  public float timeToReachObjective = 10f;
+  private float crouchingYPosition = 2.1f;
+  private float regularYPosition = 3.03f;
 
   // Gets the CharacterController from the GameObject
   private void Start() {
@@ -78,8 +79,12 @@ public class PlayerController : MonoBehaviour
     if (Input.GetButtonDown("Crouch") && isGrounded)
       crouch = !crouch;
     if (crouch) {
+      moveSpeed = crouchSpeed;
+      Vector3 crouchingPosition = new Vector3(transform.position.x, crouchingYPosition, transform.position.z);
       playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingPosition, timeToReachObjective * Time.deltaTime);
     } else {
+      moveSpeed = crouchSpeed * 2f;
+      Vector3 regularPosition = new Vector3(transform.position.x, regularYPosition, transform.position.z);
       playerCamera.position = Vector3.MoveTowards(playerCamera.position, regularPosition, timeToReachObjective * Time.deltaTime);
     }
   }
