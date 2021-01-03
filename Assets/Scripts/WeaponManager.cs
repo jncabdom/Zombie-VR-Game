@@ -30,7 +30,8 @@ public class WeaponManager : MonoBehaviour
       }
           GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("BuyWeapon").gameObject.SetActive(true);
         } else {
-          GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("NoMoney").gameObject.SetActive(true);
+      GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("BuyWeapon").gameObject.SetActive(false);
+      GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("NoMoney").gameObject.SetActive(true);
         }
       insideBuyingArea = true;
     if (distance > radius) {
