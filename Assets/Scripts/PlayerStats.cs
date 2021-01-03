@@ -7,10 +7,13 @@ public class PlayerStats : MonoBehaviour
 {
   public static float health = 100;
   public static int money = 400;
+  public GameObject weapon;
 
   private void Start() {
     WeaponManager.OnDecreaseMoney += DecreaseMoney;
     WeaponManager.OnEnoughMoney += EnoughMoney;
+    WeaponManager.OnSameWeapon += SameWeapon;
+    WeaponManager.OnSetWeapon += SetWeapon;
   }
 
   // If enough money then decrease it and return a success state
@@ -19,13 +22,22 @@ public class PlayerStats : MonoBehaviour
   }
 
   bool EnoughMoney(int price) {
-    return (money >= price)? true : false;
+    return money >= price;
+  }
+
+  bool SameWeapon(string weaponName) {
+    return weapon.name == weaponName;
+  }
+
+  void SetWeapon(GameObject newWeapon) {
+    weapon = newWeapon;
   }
 
   private void OnDisable() {
     WeaponManager.OnDecreaseMoney -= DecreaseMoney;
     WeaponManager.OnEnoughMoney -= EnoughMoney;
   }
+
 
   // Update is called once per frame
   void Update()
