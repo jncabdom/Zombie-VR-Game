@@ -6,24 +6,53 @@ public delegate bool EnoughMoney(int price);
 public delegate void DecreaseMoney(int price);
 public delegate bool SameWeapon(string weaponName);
 public delegate void SetWeapon(GameObject newWeapon);
+public delegate void SetBullets(int magazineBullets, int bullets);
 
 public class WeaponManager : MonoBehaviour
 {
+  // Detection of player
   public float radius = 2f;
   public GameObject player;
+  private bool insideBuyingArea = false;
+
+  // Checking for cash and weapon attached to the player
   public GameObject weapon;
   public int weaponPrice = 100;
   public int bulletsPrice = 25;
-  public bool insideBuyingArea = false;
+
+  // Events to control PlayerStats
   public static event DecreaseMoney OnDecreaseMoney;
   public static event EnoughMoney OnEnoughMoney;
   public static event SameWeapon OnSameWeapon;
   public static event SetWeapon OnSetWeapon;
+  public static event SetBullets OnSetBullets;
+
+  // Bullets
+  public int magazineBullets = 24;
+  public int bullets = 64;
+  private int currentBullets;
+  private int currentMagazineBullets;
+
+  // Gun position and rotation
+  public Vector3 pos = new Vector3(0.2f, 1.3f, 0.7f);
+  public Vector3 rot = new Vector3(-2f, -15f, -2f);
+
+  private void Start() {
+    currentBullets = bullets;
+    currentMagazineBullets = magazineBullets;
+  }
 
   // Update is called once per frame
   void Update() {
+    BuyGun();
+    Shoot();
+    Reload();
+  }
+
+  void BuyGun() {
     float distance = Vector3.Distance(transform.position, player.transform.position);
     if (distance <= radius) {
+      insideBuyingArea = true;
       if (!OnSameWeapon(weapon.name) && OnEnoughMoney(weaponPrice)) {
         if (Input.GetButtonDown("Action")) {
           OnDecreaseMoney(weaponPrice);
@@ -33,10 +62,11 @@ public class WeaponManager : MonoBehaviour
         RemoveGUITexts();
         GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("BuyWeapon").gameObject.SetActive(true);
       } else if (OnSameWeapon(weapon.name) && OnEnoughMoney(bulletsPrice)) {
-        if (Input.GetButtonDown("Action")) {
+        if (Input.GetButtonDown("Action") && !FullOfBullets()) {
           OnDecreaseMoney(bulletsPrice);
-          Debug.Log("+100 balas");
-          // Meterle balas a un arma
+          currentBullets = bullets;
+          currentMagazineBullets = magazineBullets;
+          OnSetBullets(currentMagazineBullets, currentBullets);
         }
         RemoveGUITexts();
         GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("BuyBullets").gameObject.SetActive(true);
@@ -45,6 +75,7 @@ public class WeaponManager : MonoBehaviour
         GameObject.Find("Canvas").GetComponent<Canvas>().transform.Find("NoMoney").gameObject.SetActive(true);
       }
     } else {
+      insideBuyingArea = false;
       RemoveGUITexts();
       Debug.Log(PlayerStats.money);
     }
@@ -57,9 +88,54 @@ public class WeaponManager : MonoBehaviour
   }
 
   void AttachWeapon() {
-    GameObject gun = Instantiate(weapon, new Vector3(player.transform.position.x,
-                                                     player.transform.position.y + 1,
-                                                     player.transform.position.z + 1), Quaternion.identity);
+    GameObject gun = Instantiate(weapon, new Vector3(player.transform.position.x + pos.x,
+                                                     player.transform.position.y + pos.y,
+                                                     player.transform.position.z + pos.z), Quaternion.identity);
+    gun.transform.Rotate(rot);
     gun.transform.SetParent(player.transform);
+    OnSetBullets(currentMagazineBullets, currentBullets);
+  }
+
+  void Shoot() {
+    if (Input.GetButtonDown("Fire") && !MagazineEmpty()) {
+      currentMagazineBullets--;
+      OnSetBullets(currentMagazineBullets, currentBullets);
+    }
+  }
+
+  void Reload() {
+    if (Input.GetButtonDown("Action") && !insideBuyingArea && !MagazineFull()) {
+      if (EnoughForMagazine()) {                                        // If there are enough bullets to fill the magazine
+        currentBullets -= magazineBullets - currentMagazineBullets;
+        currentMagazineBullets = magazineBullets;
+      } else {                                                          // Otherwise  we calculate the total of bullets we still have
+        int totalBullets = currentMagazineBullets + currentBullets;     // If the totalbullets are greater than a magazine stock
+        int leftBullets = totalBullets - magazineBullets;               
+        if (leftBullets > 0) {
+          currentBullets = leftBullets;
+          currentMagazineBullets = magazineBullets;
+        } else {
+          currentBullets = 0;
+          currentMagazineBullets = totalBullets;
+        }
+      }
+      OnSetBullets(currentMagazineBullets, currentBullets);
+    }
+  }
+
+  bool EnoughForMagazine() {
+    return currentBullets >= magazineBullets;
+  }
+
+  bool MagazineEmpty() {
+    return currentMagazineBullets == 0;
+  }
+
+  bool MagazineFull() {
+    return currentMagazineBullets == magazineBullets;
+  }
+
+  bool FullOfBullets() {
+    return currentBullets == bullets && MagazineFull();
   }
 }

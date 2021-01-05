@@ -33,13 +33,14 @@ public class PlayerController : MonoBehaviour
   // Crouch
   private bool crouch = false;
   public Transform playerCamera;
-  public float timeToReachObjective = 10f;
-  private float crouchingYPosition = 2.1f;
-  private float regularYPosition = 3.03f;
+  public float timeToReachObjective = 5f;
+  private float crouchingYPosition = 0f;
+  private float regularYPosition = 1.5f;
 
   // Gets the CharacterController from the GameObject
   private void Start() {
     controller = gameObject.GetComponent<CharacterController>();
+    Cursor.lockState = CursorLockMode.Locked;
   }
 
   // Here check if movement is required 
@@ -75,16 +76,17 @@ public class PlayerController : MonoBehaviour
       velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
   }
 
+  // If crouch button is pressed and the player is in the ground then it lowers the camera to crouchingYPosition
   private void Crouch() {
     if (Input.GetButtonDown("Crouch") && isGrounded)
       crouch = !crouch;
     if (crouch) {
       moveSpeed = crouchSpeed;
-      Vector3 crouchingPosition = new Vector3(transform.position.x, crouchingYPosition, transform.position.z);
+      Vector3 crouchingPosition = new Vector3(transform.position.x, transform.position.y + crouchingYPosition, transform.position.z);
       playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingPosition, timeToReachObjective * Time.deltaTime);
     } else {
       moveSpeed = crouchSpeed * 2f;
-      Vector3 regularPosition = new Vector3(transform.position.x, regularYPosition, transform.position.z);
+      Vector3 regularPosition = new Vector3(transform.position.x, transform.position.y + regularYPosition, transform.position.z);
       playerCamera.position = Vector3.MoveTowards(playerCamera.position, regularPosition, timeToReachObjective * Time.deltaTime);
     }
   }
