@@ -7,6 +7,8 @@ public class PlayerStats : MonoBehaviour
 {
   public static float health = 100;
   public static int money = 400;
+  public static float reloadSpeed = 1f;
+  public static float damageMultiplier = 1f;
   public GameObject weapon;
 
   private void Start() {
@@ -38,7 +40,18 @@ public class PlayerStats : MonoBehaviour
     WeaponManager.OnEnoughMoney -= EnoughMoney;
   }
 
+  public void increaseHealth(float amount) {
+    health *= amount;
+  }
 
+  public void increaseDmg(float amount) {
+    damageMultiplier *= amount;
+  }
+
+  public void increaseReloadSpeed(float amount) {
+    reloadSpeed *= amount;
+  }
+  
   // Update is called once per frame
   void Update()
     {
