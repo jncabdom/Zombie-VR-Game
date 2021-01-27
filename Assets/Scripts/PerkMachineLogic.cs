@@ -7,10 +7,11 @@ public class PerkMachineLogic : MonoBehaviour
     public string perkName;
     public GameObject target;
     public int price;
-    public float detectionRadius = 2f;
+    public float detectionRadius = 4f;
     private bool purchased = false;
     private PlayerStats playerScript;
     bool print = false;
+    bool displayMsg = false;
 
 
     void Start() {
@@ -18,24 +19,38 @@ public class PerkMachineLogic : MonoBehaviour
         playerScript = GameObject.Find("Player").GetComponent<PlayerStats>();
     }
 
-    void Update() {
-        if (onRange(target)) {
-            // Printear mensajito de compra usando perkName y price
-            if(Input.GetButtonDown("Action")) {
-                buyPerk();
+    void OnGUI () {
+         if (displayMsg) {
+            if(PlayerStats.money >= price) {
+                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Press Action to buy " + perkName + "(" + price + ")");
             }
+            else GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Insufficient money");
         }
     }
 
+    void Update() {
+        if (onRange(target)) {
+            if(!purchased) {
+                displayMsg = true;
+                if((Input.GetButtonDown("Action")) && (PlayerStats.money >= price)) {
+                    purchased = true;
+                    buyPerk();
+                }
+            }
+            else displayMsg = false;
+        }
+        else displayMsg = false;
+    }
+
     private bool onRange(GameObject target) {
-        return (Vector3.Distance(transform.position, target.transform.position) > detectionRadius);
+        return (Vector3.Distance(transform.position, target.transform.position) < detectionRadius);
     }
     
     void buyPerk() {
-        // Falta implementar los iconos I guess?
+        PlayerStats.money -= price;
         switch(perkName) {
             case "Quick Revive":
-                // No sé como implementar esto aún
+                playerScript.increaseRecovery(1.5f);
             break;
             case "Double Tap":
                 playerScript.increaseDmg(1.5f);

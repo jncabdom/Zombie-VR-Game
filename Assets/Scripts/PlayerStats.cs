@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Here I'm defining health, cash...
 public class PlayerStats : MonoBehaviour
 {
   public static float health = 100;
-  public static int money = 400;
+  public static int money = 500;
   public static float reloadSpeed = 1f;
   public static float damageMultiplier = 1f;
+  public static float recoverySpeed = 1f;
   public GameObject weapon;
 
   private void Start() {
@@ -52,8 +52,7 @@ public class PlayerStats : MonoBehaviour
     reloadSpeed *= amount;
   }
   
-  // Update is called once per frame
-  void Update()
-    {
-    }
+  public void increaseRecovery(float amount) {
+    recoverySpeed *= amount;
+  }
 }

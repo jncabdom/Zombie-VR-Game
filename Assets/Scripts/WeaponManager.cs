@@ -77,7 +77,6 @@ public class WeaponManager : MonoBehaviour
     } else {
       insideBuyingArea = false;
       RemoveGUITexts();
-      Debug.Log(PlayerStats.money);
     }
   }
 
