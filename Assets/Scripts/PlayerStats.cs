@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
   public static float health = 100;
-  public static int money = 500;
+  public static int money = 10000;
   public static float reloadSpeed = 1f;
   public static float damageMultiplier = 1f;
   public static float recoverySpeed = 1f;
@@ -16,11 +16,23 @@ public class PlayerStats : MonoBehaviour
     WeaponManager.OnEnoughMoney += EnoughMoney;
     WeaponManager.OnSameWeapon += SameWeapon;
     WeaponManager.OnSetWeapon += SetWeapon;
+    BuyDoor.OnDecreaseMoney += DecreaseMoney;
+    BuyDoor.OnEnoughMoney += EnoughMoney;
+    MoveTowardsPlayer.OnDamagePlayer += Damage;
+  }
+
+  private void Update() {
   }
 
   // If enough money then decrease it and return a success state
   void DecreaseMoney(int price) {
-    money -= price;
+    if (EnoughMoney(price)) {
+      money -= price;
+    }
+  }
+
+  void Damage(int amount) {
+    health -= amount;
   }
 
   bool EnoughMoney(int price) {
