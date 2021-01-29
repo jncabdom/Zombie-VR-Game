@@ -24,7 +24,7 @@ public class GunScript : MonoBehaviour
        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward,out hitInfo, range)) {
             Debug.Log(hitInfo.transform.name);
            if (hitInfo.transform.tag == "Songui") {
-                hitInfo.collider.gameObject.SendMessage("damgeSongui", damage);
+                hitInfo.collider.gameObject.SendMessage("damageSongui", damage);
            }
        }
     }
