@@ -4919,8 +4919,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
+  cadence: 3
   fpsCam: {fileID: 0}
   muzzleFlash: {fileID: 1255357065}
+  blood: {fileID: 0}
 --- !u!1001 &8660561695004206187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4986,9 +4988,10 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 895d63c2571c89d428ca3bc34ca53ca4,
         type: 3}
       propertyPath: m_Name
-      value: AK-472
+      value: AK-472 Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5716681864270162303, guid: 895d63c2571c89d428ca3bc34ca53ca4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 895d63c2571c89d428ca3bc34ca53ca4, type: 3}
 --- !u!1 &797581266749488482 stripped
 GameObject:

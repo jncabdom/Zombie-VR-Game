@@ -78,9 +78,10 @@ public class WeaponBuyLogic : MonoBehaviour
         GameObject gun = Instantiate(weapon, new Vector3(player.transform.position.x,
                                                      player.transform.position.y + 1f,
                                                      player.transform.position.z), Quaternion.identity);
+        gun.GetComponent<GunScript>().walled = false;
         gun.transform.SetParent(CameraTransform);
         gun.transform.rotation = CameraTransform.rotation;
-        gun.transform.localPosition = new Vector3(0.55f, -0.5f, 0.9f);
+        gun.transform.localPosition = new Vector3(0.55f, -0.5f, 2f);
     }
 
     void buyBullets() {

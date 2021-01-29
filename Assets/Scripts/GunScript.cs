@@ -5,20 +5,22 @@ public class GunScript : MonoBehaviour
 {
     public float damage = 10f;
     public float range = 100f;
-    public float cadence = 3.0f;
+    public float cadence = 0.3f;
 
     bool canShoot = true;
-    bool walled = true;
+    public bool walled = false;
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
 
     AudioSource[] audioAk;
+    Animator anim;
     public GameObject blood;
 
     void Start()
     {
         audioAk = GetComponents<AudioSource>();
+        anim = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -44,6 +46,7 @@ public class GunScript : MonoBehaviour
     }
 
     void shoot() {
+        anim.SetBool("Shoot", true);
         muzzleFlash.Play();
         audioAk[0].Play();
 
@@ -57,5 +60,6 @@ public class GunScript : MonoBehaviour
                 hitInfo.collider.gameObject.SendMessage("damageSongui", damage);
            }
        }
+        anim.SetBool("Shoot", false);
     }
 }
