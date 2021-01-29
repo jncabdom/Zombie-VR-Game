@@ -33,7 +33,7 @@ public class BuyDoor : MonoBehaviour
                 bought = true;
                 OnDecreaseMoney(cost);
                 transform.Find("Info").GetComponent<Canvas>().transform.Find("BuyDoor").gameObject.SetActive(false);
-                transform.GetComponent<MeshCollider>().enabled = false;
+                transform.GetComponent<BoxCollider>().enabled = false;
                 StartCoroutine(Disappear());
             }
         } else {
