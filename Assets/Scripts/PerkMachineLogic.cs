@@ -12,11 +12,13 @@ public class PerkMachineLogic : MonoBehaviour
     private PlayerStats playerScript;
     bool print = false;
     bool displayMsg = false;
+    AudioSource audio;
 
 
     void Start() {
         target =  GameObject.Find("Player");
         playerScript = GameObject.Find("Player").GetComponent<PlayerStats>();
+        audio = GetComponent<AudioSource>();
     }
 
     void OnGUI () {
@@ -34,6 +36,7 @@ public class PerkMachineLogic : MonoBehaviour
                 displayMsg = true;
                 if((Input.GetButtonDown("Action")) && (PlayerStats.money >= price)) {
                     purchased = true;
+                    audio.Play();
                     buyPerk();
                 }
             }

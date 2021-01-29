@@ -13,11 +13,13 @@ public class BuyDoor : MonoBehaviour
     public int y = -1;
     public float speed = 200f;
     private bool bought = false;
+    AudioSource audioOpen;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.Find("Info").GetComponent<Canvas>().transform.Find("BuyDoor").GetComponent<Text>().text += "[" + cost.ToString() + "]"; 
+        audioOpen = GetComponent<AudioSource>();
     }
 
     bool InRange() {
@@ -42,6 +44,7 @@ public class BuyDoor : MonoBehaviour
     }
 
     IEnumerator Disappear() {
+        audioOpen.Play();
         Vector3 target = new Vector3(transform.position.x, transform.position.y * y, transform.position.z);
         while (Vector3.Distance(transform.position, target) > radius) {
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

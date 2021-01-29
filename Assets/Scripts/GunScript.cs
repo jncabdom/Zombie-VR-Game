@@ -8,10 +8,17 @@ public class GunScript : MonoBehaviour
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
 
+    AudioSource[] audioAk;
+
+    void Start()
+    {
+        audioAk = GetComponents<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire")) {
+            audioAk[0].Play();
             shoot();
         }
         
