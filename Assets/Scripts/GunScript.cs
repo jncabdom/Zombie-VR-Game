@@ -13,6 +13,7 @@ public class GunScript : MonoBehaviour
     public ParticleSystem muzzleFlash;
 
     AudioSource[] audioAk;
+    public GameObject blood;
 
     void Start()
     {
@@ -43,6 +44,9 @@ public class GunScript : MonoBehaviour
        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward,out hitInfo, range)) {
             Debug.Log(hitInfo.transform.name);
            if (hitInfo.transform.tag == "Songui") {
+               GameObject newObj = Instantiate(blood, hitInfo.point, Quaternion.Euler(-fpsCam.transform.forward), hitInfo.transform);
+               // GameObject newObj = Instantiate(blood, hitInfo.point, Quaternion.SetFromToRotation(hitInfo.transform.position, fpsCam.transform.position), hitInfo.transform);
+               Destroy(newObj, 0.5f);
                 hitInfo.collider.gameObject.SendMessage("damageSongui", damage);
            }
        }
