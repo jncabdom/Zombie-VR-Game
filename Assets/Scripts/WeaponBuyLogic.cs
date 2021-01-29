@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponBuyLogic : MonoBehaviour
 {
+    GameObject message;
+    Text messageText;
+
     public Transform CameraTransform;
     public GameObject weapon;
     public string name;
@@ -29,6 +33,11 @@ public class WeaponBuyLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject reference = GameObject.Find("InteractionText");
+        message = Instantiate(reference, reference.transform.position, reference.transform.rotation);
+        message.transform.SetParent(GameObject.Find("PlayerUI").GetComponent<Transform>());
+        message.transform.localScale = reference.transform.localScale;
+        messageText = message.GetComponent<Text>();
         player = GameObject.Find("Player");
     }
 
@@ -58,19 +67,6 @@ public class WeaponBuyLogic : MonoBehaviour
         else showMessage("none");
     }
 
-    void OnGUI() {
-        if(weaponMsg) {
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Press Action to buy " + name + "(" + weaponPrice + ")");
-        }
-        if(bulletsMsg) {
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Press Action to buy " + name + " bullets (" + weaponPrice + ")");
-
-        }
-        if(insufficientMoney) {
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Insufficient funds");
-        }
-    }
-
     void buyWeapon() {
         bought = true;
         PlayerStats.money -= weaponPrice;
@@ -85,30 +81,22 @@ public class WeaponBuyLogic : MonoBehaviour
     }
 
     void buyBullets() {
-
+        // TODO
     }
 
     void showMessage(string msg) {
         switch(msg) {
             case "weapon":
-                weaponMsg = true;
-                bulletsMsg = false;
-                insufficientMoney = false;
+                messageText.text = "Press Action to buy " + name + "(" + weaponPrice + ")";
                 break;
             case "bullets":
-                weaponMsg = false;
-                bulletsMsg = true;
-                insufficientMoney = false;
+                messageText.text = "Press Action to buy " + name + " bullets (" + weaponPrice + ")";
                 break;
             case "money":
-                weaponMsg = false;
-                bulletsMsg = false;
-                insufficientMoney = true;
+                messageText.text = "Insufficient funds";
                 break;
             case "none":
-                weaponMsg = false;
-                bulletsMsg = false;
-                insufficientMoney = false;
+                messageText.text = "";
                 break;
         }
     }

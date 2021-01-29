@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BuyDoor : MonoBehaviour
 {
+    GameObject message;
+    Text messageText;
     public static event DecreaseMoney OnDecreaseMoney;
     public static event EnoughMoney OnEnoughMoney;
     public GameObject player;
@@ -12,13 +14,16 @@ public class BuyDoor : MonoBehaviour
     public int cost = 1000;
     public int y = -1;
     public float speed = 200f;
-    private bool bought = false;
     AudioSource audioOpen;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.Find("Info").GetComponent<Canvas>().transform.Find("BuyDoor").GetComponent<Text>().text += "[" + cost.ToString() + "]"; 
+        GameObject reference = GameObject.Find("InteractionText");
+        message = Instantiate(reference, reference.transform.position, reference.transform.rotation);
+        message.transform.SetParent(GameObject.Find("PlayerUI").GetComponent<Transform>());
+        message.transform.localScale = reference.transform.localScale;
+        messageText = message.GetComponent<Text>();
         audioOpen = GetComponent<AudioSource>();
     }
 
@@ -29,18 +34,16 @@ public class BuyDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InRange() && !bought) {
-            transform.Find("Info").GetComponent<Canvas>().transform.Find("BuyDoor").gameObject.SetActive(true);
-            if (Input.GetButtonDown("Action") && OnEnoughMoney(cost) && !bought) {
-                bought = true;
+        if (InRange()) {
+            messageText.text = "Press Action to clear debris (" + cost + ")";
+            if (Input.GetButtonDown("Action") && OnEnoughMoney(cost)) {
                 OnDecreaseMoney(cost);
-                transform.Find("Info").GetComponent<Canvas>().transform.Find("BuyDoor").gameObject.SetActive(false);
                 transform.GetComponent<BoxCollider>().enabled = false;
                 StartCoroutine(Disappear());
+                messageText.text = "";
             }
-        } else {
-            transform.Find("Info").GetComponent<Canvas>().transform.Find("BuyDoor").gameObject.SetActive(false);
         }
+        else messageText.text = "";
     }
 
     IEnumerator Disappear() {

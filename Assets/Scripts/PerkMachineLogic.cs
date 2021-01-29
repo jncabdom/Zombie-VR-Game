@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PerkMachineLogic : MonoBehaviour
 {
+    GameObject message;
+    Text messageText;
     public string perkName;
     public GameObject target;
     public int price;
@@ -18,31 +21,30 @@ public class PerkMachineLogic : MonoBehaviour
     void Start() {
         target =  GameObject.Find("Player");
         playerScript = GameObject.Find("Player").GetComponent<PlayerStats>();
+        GameObject reference = GameObject.Find("InteractionText");
+        message = Instantiate(reference, reference.transform.position, reference.transform.rotation);
+        message.transform.SetParent(GameObject.Find("PlayerUI").GetComponent<Transform>());
+        message.transform.localScale = reference.transform.localScale;
+        messageText = message.GetComponent<Text>();
         audio = GetComponent<AudioSource>();
-    }
-
-    void OnGUI () {
-         if (displayMsg) {
-            if(PlayerStats.money >= price) {
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Press Action to buy " + perkName + "(" + price + ")");
-            }
-            else GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Insufficient money");
-        }
     }
 
     void Update() {
         if (onRange(target)) {
             if(!purchased) {
-                displayMsg = true;
-                if((Input.GetButtonDown("Action")) && (PlayerStats.money >= price)) {
-                    purchased = true;
-                    audio.Play();
-                    buyPerk();
+                if(PlayerStats.money >= price) {
+                    messageText.text = "Press Action to buy " + perkName + "(" + price + ")";
+                    if(Input.GetButtonDown("Action")) {
+                        messageText.text = "";
+                        purchased = true;
+                        audio.Play();
+                        buyPerk();
+                    }
                 }
+                else messageText.text = "Insufficient funds";
             }
-            else displayMsg = false;
         }
-        else displayMsg = false;
+        else messageText.text = "";
     }
 
     private bool onRange(GameObject target) {
