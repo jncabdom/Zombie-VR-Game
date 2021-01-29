@@ -34,8 +34,8 @@ public class WeaponManager : MonoBehaviour
   private int currentMagazineBullets;
 
   // Gun position and rotation
-  public Vector3 pos = new Vector3(0.2f, 1.3f, 0.7f);
-  public Vector3 rot = new Vector3(-2f, -15f, -2f);
+  public Vector3 pos = new Vector3(0.3f, 4.3f, 0.6f);
+  // public Vector3 rot = new Vector3(1.54f, -12.47f, -2.37f);
 
   private void Start() {
     currentBullets = bullets;
@@ -87,11 +87,14 @@ public class WeaponManager : MonoBehaviour
   }
 
   void AttachWeapon() {
-    GameObject gun = Instantiate(weapon, new Vector3(player.transform.position.x + pos.x,
-                                                     player.transform.position.y + pos.y,
-                                                     player.transform.position.z + pos.z), Quaternion.identity);
-    gun.transform.Rotate(rot);
+    Debug.Log(player.transform.position);
+    GameObject gun = Instantiate(weapon, new Vector3(player.transform.position.x,
+                                                     player.transform.position.y + 1f,
+                                                     player.transform.position.z), Quaternion.identity);
     gun.transform.SetParent(player.transform);
+    gun.transform.rotation = player.transform.Find("CameraRig").rotation;
+    gun.transform.localPosition = new Vector3(0.3f, 2.3f, 0.6f);
+    Debug.Log(gun.transform.localPosition.y);
     OnSetBullets(currentMagazineBullets, currentBullets);
   }
 
