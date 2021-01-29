@@ -21,9 +21,6 @@ public class PlayerStats : MonoBehaviour
     MoveTowardsPlayer.OnDamagePlayer += Damage;
   }
 
-  private void Update() {
-  }
-
   // If enough money then decrease it and return a success state
   void DecreaseMoney(int price) {
     if (EnoughMoney(price)) {
@@ -66,5 +63,9 @@ public class PlayerStats : MonoBehaviour
   
   public void increaseRecovery(float amount) {
     recoverySpeed *= amount;
+  }
+
+  public void destroyWeapon() {
+    GameObject.Destroy(GameObject.Find(GetComponent<Transform>().GetChild(0).GetChild(0).GetChild(1).name));
   }
 }

@@ -13,14 +13,14 @@ public class GunScript : MonoBehaviour
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
 
-    AudioSource[] audioAk;
-    Animator anim;
+    AudioSource[] audio;
+    Animation anim;
     public GameObject blood;
 
     void Start()
     {
-        audioAk = GetComponents<AudioSource>();
-        anim = GetComponent<Animator>();
+        audio = GetComponents<AudioSource>();
+        anim = GetComponent<Animation>();
     }
     // Update is called once per frame
     void Update()
@@ -46,9 +46,9 @@ public class GunScript : MonoBehaviour
     }
 
     void shoot() {
-        anim.SetBool("Shoot", true);
+        anim.Play("Shoot");
         muzzleFlash.Play();
-        audioAk[0].Play();
+        audio[0].Play();
 
         RaycastHit hitInfo;
        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward,out hitInfo, range)) {
@@ -60,6 +60,5 @@ public class GunScript : MonoBehaviour
                 hitInfo.collider.gameObject.SendMessage("damageSongui", damage);
            }
        }
-        anim.SetBool("Shoot", false);
     }
 }

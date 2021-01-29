@@ -17,8 +17,8 @@ public class WeaponBuyLogic : MonoBehaviour
     public GameObject player;
 
     // Prices
-    int weaponPrice = 100;
-    int bulletsPrice = 25;
+    public int weaponPrice = 100;
+    public int bulletsPrice = 25;
 
     bool bought = false;
 
@@ -70,6 +70,7 @@ public class WeaponBuyLogic : MonoBehaviour
     void buyWeapon() {
         bought = true;
         PlayerStats.money -= weaponPrice;
+        player.SendMessage("destroyWeapon");
 
         GameObject gun = Instantiate(weapon, new Vector3(player.transform.position.x,
                                                      player.transform.position.y + 1f,
