@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Guns/AK-472 Variant.prefab.meta
 guid: 374e1013cf7f9834195e953620a94459
 PrefabImporter:
+=======
+guid: b3a16ac9e784c1f4ea06b85b571022f5
+folderAsset: yes
+DefaultImporter:
+>>>>>>> b0ad98da4cbb0830e81299dc568ebf90c1a6e165:Assets/Fonts.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
