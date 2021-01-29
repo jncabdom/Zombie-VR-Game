@@ -8,6 +8,7 @@ public class GunScript : MonoBehaviour
     public float cadence = 3.0f;
 
     bool canShoot = true;
+    bool walled = true;
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
@@ -22,11 +23,17 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetButton("Fire")) || (Input.GetAxisRaw("FireController") == 1)) {
-            if(canShoot) {
-                StartCoroutine(shootWait());
+        if(!walled) {
+            if ((Input.GetButton("Fire")) || (Input.GetAxisRaw("FireController") == 1)) {
+                if(canShoot) {
+                    StartCoroutine(shootWait());
+                }
             }
         }
+    }
+
+    void unwall() {
+        walled = false;
     }
 
     IEnumerator shootWait() {
