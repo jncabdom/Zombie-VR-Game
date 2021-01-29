@@ -10,6 +10,9 @@ public delegate void SetBullets(int magazineBullets, int bullets);
 
 public class WeaponManager : MonoBehaviour
 {
+
+  public Transform CameraTransform;
+
   // Detection of player
   public float radius = 2f;
   public GameObject player;
@@ -91,9 +94,9 @@ public class WeaponManager : MonoBehaviour
     GameObject gun = Instantiate(weapon, new Vector3(player.transform.position.x,
                                                      player.transform.position.y + 1f,
                                                      player.transform.position.z), Quaternion.identity);
-    gun.transform.SetParent(player.transform);
-    gun.transform.rotation = player.transform.Find("CameraRig").rotation;
-    gun.transform.localPosition = new Vector3(0.3f, 2.3f, 0.6f);
+    gun.transform.SetParent(CameraTransform);
+    gun.transform.rotation = CameraTransform.rotation;
+    gun.transform.localPosition = new Vector3(0.15f, -0.1f, 0.3f);
     Debug.Log(gun.transform.localPosition.y);
     OnSetBullets(currentMagazineBullets, currentBullets);
   }

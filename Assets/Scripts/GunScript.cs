@@ -21,7 +21,7 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetButtonDown("Fire")) || (Input.GetAxisRaw("FireController") == 1)) {
+        if ((Input.GetButton("Fire")) || (Input.GetAxisRaw("FireController") == 1)) {
             if(canShoot) {
                 StartCoroutine(shootWait());
             }
