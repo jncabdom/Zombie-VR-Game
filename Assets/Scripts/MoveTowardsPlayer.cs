@@ -17,6 +17,7 @@ public class MoveTowardsPlayer : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        player = GameObject.Find("Player").GetComponent<Transform>();
         navComponent = gameObject.GetComponent<NavMeshAgent>();
     }
 
