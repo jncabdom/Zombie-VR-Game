@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    GameObject message;
+    Text messageText;
     public GameObject[] spawners;
     public int round = 1;
     public int songuisPerRound = 4;
@@ -14,11 +17,18 @@ public class GameController : MonoBehaviour
 
     void Start() {
         remainingSonguis = 0;
+        GameObject reference = GameObject.Find("Rounds");
+        message = Instantiate(reference, reference.transform.position, reference.transform.rotation);
+        message.transform.SetParent(GameObject.Find("PlayerUI").GetComponent<Transform>());
+        message.transform.localScale = reference.transform.localScale;
+        messageText = message.GetComponent<Text>();
+        messageText.text = round.ToString();
     }
 
     void Update()
     {
         if (remainingSonguis == 0) {
+            messageText.text = round.ToString();
             Debug.Log("End of Round");
             remainingSonguis = songuisPerRound;
             StartCoroutine(playRound());

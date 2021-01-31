@@ -14,7 +14,9 @@ public class BuyDoor : MonoBehaviour
     public int cost = 1000;
     public int y = -1;
     public float speed = 200f;
+    private float distanceToTarget = 1f;
     AudioSource audioOpen;
+    bool bought = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +37,10 @@ public class BuyDoor : MonoBehaviour
     void Update()
     {
         if (InRange()) {
-            messageText.text = "Press Action to clear debris (" + cost + ")";
+            if (!bought)
+                messageText.text = "Press Action to clear debris (" + cost + ")";
             if (Input.GetButtonDown("Action") && OnEnoughMoney(cost)) {
+                bought = true;
                 OnDecreaseMoney(cost);
                 transform.GetComponent<BoxCollider>().enabled = false;
                 StartCoroutine(Disappear());
@@ -49,9 +53,9 @@ public class BuyDoor : MonoBehaviour
     IEnumerator Disappear() {
         audioOpen.Play();
         Vector3 target = new Vector3(transform.position.x, transform.position.y * y, transform.position.z);
-        while (Vector3.Distance(transform.position, target) > radius) {
+        while (Vector3.Distance(transform.position, target) > distanceToTarget) {
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(2.5f);
         }
         gameObject.SetActive(false);
     }
