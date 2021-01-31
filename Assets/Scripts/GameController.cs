@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -22,20 +23,24 @@ public class GameController : MonoBehaviour
         message.transform.SetParent(GameObject.Find("PlayerUI").GetComponent<Transform>());
         message.transform.localScale = reference.transform.localScale;
         messageText = message.GetComponent<Text>();
-        messageText.text = round.ToString();
     }
 
     void Update()
     {
         if (remainingSonguis == 0) {
             messageText.text = round.ToString();
-            Debug.Log("End of Round");
             remainingSonguis = songuisPerRound;
             StartCoroutine(playRound());
-            songuisPerRound += Random.Range(4, 6);
+            songuisPerRound += (Random.Range(4, 6) * (round/2));
         }
         if(PlayerStats.health <= 0) {
+            StartCoroutine(backToMenu());
         }
+    }
+    
+    IEnumerator backToMenu() {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MainMenu");
     }
 
     IEnumerator playRound() {
