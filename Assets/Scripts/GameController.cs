@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     GameObject message;
     Text messageText;
     public GameObject[] spawners;
-    public int round = 1;
+    public static int round = 1;
     public int songuisPerRound = 4;
     public int remainingSonguis;
     public int maxWaitTime = 12;
@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator playRound() {
         while(remainingSonguis != 1) {
-            Debug.Log(remainingSonguis);
+            //Debug.Log(remainingSonguis);
             SpawnSongui();
             remainingSonguis--;
             yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
