@@ -7,6 +7,7 @@ public delegate void DamagePlayer(int amount);
 
 public class MoveTowardsPlayer : MonoBehaviour
 {
+    AudioSource[] audio;
     public Transform player;
     public float deathDistance = 1f;
     private NavMeshAgent navComponent;
@@ -17,6 +18,7 @@ public class MoveTowardsPlayer : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        audio = GetComponents<AudioSource>();
         player = GameObject.Find("Player").GetComponent<Transform>();
         navComponent = gameObject.GetComponent<NavMeshAgent>();
     }
@@ -26,8 +28,13 @@ public class MoveTowardsPlayer : MonoBehaviour
         float dist = Vector3.Distance(player.position, transform.position);
         if (dist < deathDistance && !isAttacking) {
             StartCoroutine(DamagePlayer());
+            Roar();
         }       
         navComponent.destination = player.position;
+    }
+
+    void Roar() {
+        audio[Random.Range(0, audio.Length - 1)].Play();
     }
 
     IEnumerator DamagePlayer() {
