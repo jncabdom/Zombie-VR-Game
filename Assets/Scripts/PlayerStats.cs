@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
   public float maxHealth = 100f;
   public static float health = 100f;
-  public static int money = 400;
+  public static int money = 10000;
   public static float reloadSpeed = 1f;
   public static float damageMultiplier = 1f;
   public static float recoverySpeed = 1f;

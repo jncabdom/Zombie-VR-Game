@@ -83,7 +83,7 @@ public class GunScript : MonoBehaviour
                 if (hitInfo.transform.tag == "Songui") {
                     GameObject newObj = Instantiate(blood, hitInfo.point, Quaternion.Euler(-fpsCam.transform.forward), hitInfo.transform);
                     Destroy(newObj, 0.5f);
-                    hitInfo.collider.gameObject.SendMessage("damageSongui", damage);
+                    hitInfo.collider.gameObject.SendMessage("damageSongui", damage * PlayerStats.damageMultiplier);
                     OnEarnMoney(amount);
                 }
             }
