@@ -92,6 +92,7 @@ public class GunScript : MonoBehaviour
 
     void Reload() {
         if (Input.GetButtonDown("Action") && !MagazineFull()) {
+        audio[1].Play();
         if (EnoughForMagazine()) {                                        // If there are enough bullets to fill the magazine
           currentBullets -= magazineBullets - currentMagazineBullets;
           currentMagazineBullets = magazineBullets;
