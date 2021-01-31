@@ -74,7 +74,7 @@ Además el menú y el juego constan de dos bandas sonoras que dan immersión al 
 
 ## Acta de acuerdos
 
-Para distribuirnos las tareas creamos una lista en la aplicación *Zenkit*. Creamos distintas entradas con los aspectos a desarrollar y los problemas a resolver, y cada uno se iba asignando distintas tareas. Para juntar las distintas partes del juego que iba desarrollando cada uno creamos un repositorio de *GitHub* al que ibamos pusheando los cambios.
+Para distribuirnos las tareas creamos una lista en la aplicación *Zenkit*. Creamos distintas entradas con los aspectos a desarrollar y los problemas a resolver, y cada uno se iba asignando distintas tareas. Para juntar las distintas partes del juego que iba desarrollando cada uno creamos un repositorio de *GitHub* al que ibamos subiendo los cambios.
 
 ## Ejecución del programa
 
