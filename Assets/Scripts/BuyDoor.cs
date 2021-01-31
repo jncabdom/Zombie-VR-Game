@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class BuyDoor : MonoBehaviour
 {
-    GameObject message;
-    Text messageText;
+    public Text messageText;
     public static event DecreaseMoney OnDecreaseMoney;
     public static event EnoughMoney OnEnoughMoney;
     public GameObject player;
@@ -21,11 +20,10 @@ public class BuyDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject reference = GameObject.Find("InteractionText");
+     /*   GameObject reference = GameObject.Find("InteractionText");
         message = Instantiate(reference, reference.transform.position, reference.transform.rotation);
         message.transform.SetParent(GameObject.Find("PlayerUI").GetComponent<Transform>());
-        message.transform.localScale = reference.transform.localScale;
-        messageText = message.GetComponent<Text>();
+        message.transform.localScale = reference.transform.localScale; */
         audioOpen = GetComponent<AudioSource>();
     }
 

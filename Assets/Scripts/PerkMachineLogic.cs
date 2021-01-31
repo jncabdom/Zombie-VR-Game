@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class PerkMachineLogic : MonoBehaviour
 {
-    GameObject message;
-    Text messageText;
+    public Text messageText;
     public string perkName;
     public GameObject target;
     public int price;
@@ -19,14 +18,9 @@ public class PerkMachineLogic : MonoBehaviour
 
 
     void Start() {
+        audio = GetComponent<AudioSource>();
         target =  GameObject.Find("Player");
         playerScript = GameObject.Find("Player").GetComponent<PlayerStats>();
-        GameObject reference = GameObject.Find("InteractionText");
-        message = Instantiate(reference, reference.transform.position, reference.transform.rotation);
-        message.transform.SetParent(GameObject.Find("PlayerUI").GetComponent<Transform>());
-        message.transform.localScale = reference.transform.localScale;
-        messageText = message.GetComponent<Text>();
-        audio = GetComponent<AudioSource>();
     }
 
     void Update() {
