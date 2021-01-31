@@ -8545,7 +8545,7 @@ MonoBehaviour:
   radius: 6.5
   cost: 500
   y: -1
-  speed: 150
+  speed: 200
 --- !u!82 &572942513
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10380,7 +10380,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.09
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -19183,7 +19183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 986446588}
-  radius: 4
+  radius: 6.5
   cost: 500
   y: -1
   speed: 200
@@ -24140,7 +24140,7 @@ MonoBehaviour:
   radius: 6.5
   cost: 750
   y: -1
-  speed: 150
+  speed: 200
 --- !u!82 &1870781024
 AudioSource:
   m_ObjectHideFlags: 0
