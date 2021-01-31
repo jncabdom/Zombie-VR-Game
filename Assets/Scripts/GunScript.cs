@@ -2,11 +2,13 @@ using System.Collections;
 using UnityEngine;
 
 public delegate void SetBullets(int magazineBullets, int bullets);
+public delegate void EarnMoney(int amount);
 
 public class GunScript : MonoBehaviour
 {
     public static event SetBullets OnSetBullets;
     public static event SetWeapon OnSetWeapon;
+    public static event EarnMoney OnEarnMoney;
 
     public float damage = 10f;
     public float range = 100f;
@@ -21,6 +23,7 @@ public class GunScript : MonoBehaviour
     AudioSource[] audio;
     Animation anim;
     public GameObject blood;
+    public int amount = 10;
 
     // Bullets
     public int magazineBullets = 24;
@@ -81,6 +84,7 @@ public class GunScript : MonoBehaviour
                     GameObject newObj = Instantiate(blood, hitInfo.point, Quaternion.Euler(-fpsCam.transform.forward), hitInfo.transform);
                     Destroy(newObj, 0.5f);
                     hitInfo.collider.gameObject.SendMessage("damageSongui", damage);
+                    OnEarnMoney(amount);
                 }
             }
        }

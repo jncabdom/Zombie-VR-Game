@@ -16404,6 +16404,10 @@ PrefabInstance:
       objectReference: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f,
         type: 3}
     - target: {fileID: 185175510, guid: 374e1013cf7f9834195e953620a94459, type: 3}
+      propertyPath: amount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 185175510, guid: 374e1013cf7f9834195e953620a94459, type: 3}
       propertyPath: damage
       value: 50
       objectReference: {fileID: 0}
@@ -24161,7 +24165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 0
 --- !u!222 &1716122959
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25077,6 +25081,7 @@ MonoBehaviour:
   fpsCam: {fileID: 808456572}
   muzzleFlash: {fileID: 847794715}
   blood: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+  amount: 10
   magazineBullets: 24
   bullets: 64
 --- !u!82 &1853545703
@@ -27697,6 +27702,7 @@ MonoBehaviour:
   fpsCam: {fileID: 808456572}
   muzzleFlash: {fileID: 153126725}
   blood: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+  amount: 10
   magazineBullets: 24
   bullets: 64
 --- !u!4 &2104823261 stripped

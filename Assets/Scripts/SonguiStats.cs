@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SonguiStats : MonoBehaviour
 {
+    public static event EarnMoney OnEarnMoney;
+
     private float health = 100f;
     private int round;
+    public int amount = 150;
 
     void Start()
     {
@@ -14,6 +17,7 @@ public class SonguiStats : MonoBehaviour
     void damageSongui(float damage) {
         health -= damage;
         if (health <= 0) {
+            OnEarnMoney(amount);
             Destroy(gameObject);
         }
     }
