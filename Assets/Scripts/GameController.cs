@@ -39,9 +39,10 @@ public class GameController : MonoBehaviour
     }
     
     IEnumerator backToMenu() {
-        yield return new WaitForSeconds(5);
+        GameObject.Find("You Died").GetComponent<UnityEngine.Video.VideoPlayer>().Play();
+        yield return new WaitForSeconds(8);
         SceneManager.LoadScene("MainMenu");
-    }
+    }   
 
     IEnumerator playRound() {
         while(remainingSonguis != 1) {
