@@ -32,6 +32,10 @@ El escenario fue diseñado completamente en Blender, lo hicimos separando por ha
 
 ![Scenario.](img/Scenario.PNG "Scenario.")
 
+Despues le aplicamos texturas a cada habitación y luces dentro de Unity para que el juego cobrase algo mas de vida.
+
+![ScenarioWithTextures.](img/ScenarioWithTextures.PNG "ScenarioWithTextures.")
+
 El modelo de los Zombies y sus animaciones tambien las hicimos por completo en Blender. Queríamos que fuese algo más que un modelo simplista para dar algo más de immersión. Para ello lo modelamos partiendo de una forma básica (un cubo) para después crear un esqueleto que facilitara la animación. Creamos dos animaciones con el modelo, una para el movimiento y otra de ataque.
 
 ![ZombieTPose.](img/songuiTPose.PNG "ZombieTPose.")
