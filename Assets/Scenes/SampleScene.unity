@@ -7759,6 +7759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea7e9d928d9d9c42a98ce7063f9f13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRadius: 2
+  player: {fileID: 0}
 --- !u!4 &375576300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5748890740538168725, guid: f57b1021c89e6ff4784ab30a661af168,
@@ -11167,8 +11169,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7595956}
-  - {fileID: 1853545698}
   - {fileID: 2134729118}
+  - {fileID: 1853545698}
   m_Father: {fileID: 1299130759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24036,7 +24038,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8d9660edbaa9273488c845c704bfb01e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8d9660edbaa9273488c845c704bfb01e,
         type: 3}
@@ -28213,7 +28215,7 @@ RectTransform:
   - {fileID: 3927996124627825980}
   - {fileID: 2115982373}
   m_Father: {fileID: 808456569}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
