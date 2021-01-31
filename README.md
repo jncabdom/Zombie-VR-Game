@@ -3,7 +3,7 @@
 ## Proyecto Final de la Asignatura Interfaces Inteligentes 
 ## Universidad de La Laguna
 ## Desarrollado por:
-  * José Nicolas Cabrera Domínguez
+  * José Nicolás Cabrera Domínguez
   * Chirstian Jesús Pérez Hernández
   * Basilio Gómez Navarro
   * Daniel Oria Martín
@@ -62,7 +62,15 @@ Además de lo anterior, se ha implementado el manejo del juego para un mando del
 ![ZombieTPose.](img/controls.jpg "ZombieTPose.")
 
 ## Aspectos a destacar
+Hay distintas cosas que consideramos a destacar dentro del proyecto.
+
+Dos de ellas ya las hemos comentado previamente y son, el uso del mando para jugar y la implemetanción de nuestros propios modelos hecho en Blender.
+Un tercer aspecto a destacar son los efectos de sonido y la música usada para la immersión. Hemos usado varios efectos de sonido distintos, cada arma tiene su propio sonido de disparo, hay sonidos al comprar en las máquinas y al abrir zonas nuevas del mapa y cuando golpean al jugador. En el menú principal cada botón tiene sonido para cuando se pasa por encima con el ratón o con el mando y otro para cuando es seleccionado.
+Además el menú y el juego constan de dos bandas sonoras que dan immersión al juego y lo hacen más disfrutable. 
+
+## Acta de acuerdos
+
+Para distribuirnos las tareas creamos una lista en la aplicación *Zenkit*. Creamos distintas entradas con los aspectos a desarrollar y los problemas a resolver, y cada uno se iba asignando distintas tareas. Para juntar las distintas partes del juego que iba desarrollando cada uno creamos un repositorio de *GitHub* al que ibamos pusheando los cambios.
 
 ## Ejecución del programa
 
-## Acta de acuerdos
