@@ -32,7 +32,7 @@ El escenario fue diseñado completamente en Blender, lo hicimos separando por ha
 
 ![Scenario.](img/Scenario.PNG "Scenario.")
 
-Despues le aplicamos texturas a cada habitación y luces dentro de Unity para que el juego cobrase algo mas de vida.
+Después le aplicamos texturas a cada habitación y luces dentro de Unity para que el juego cobrase algo mas de vida.
 
 ![ScenarioWithTextures.](img/ScenarioWithTextures.PNG "ScenarioWithTextures.")
 
@@ -77,4 +77,10 @@ Además el menú y el juego constan de dos bandas sonoras que dan immersión al 
 Para distribuirnos las tareas creamos una lista en la aplicación *Zenkit*. Creamos distintas entradas con los aspectos a desarrollar y los problemas a resolver, y cada uno se iba asignando distintas tareas. Para juntar las distintas partes del juego que iba desarrollando cada uno creamos un repositorio de *GitHub* al que ibamos subiendo los cambios.
 
 ## Ejecución del programa
+
+Se puede visualizar una pequeña demostración de la ejecución del juego en un PC en [este vídeo]()
+
+**Por otra parte [en este enlace]() se puede visualizar la ejecución del juego en un dispositivo móvil Android. ???????????????????????????**
+
+
 
