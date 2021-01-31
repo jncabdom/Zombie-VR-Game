@@ -9165,7 +9165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: {fileID: 143433808}
   player: {fileID: 986446588}
-  radius: 10
+  radius: 7
   cost: 500
   y: -1
   speed: 200
@@ -10665,8 +10665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraTransform: {fileID: 808456569}
   weapon: {fileID: 1778225908}
-  weaponName: 
-  detectionRadius: 2
+  weaponName: AK
+  detectionRadius: 3
   player: {fileID: 986446588}
   weaponPrice: 1350
   bulletsPrice: 100
@@ -18529,6 +18529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea7e9d928d9d9c42a98ce7063f9f13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRadius: 5
+  player: {fileID: 986446588}
 --- !u!64 &1071996664
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18673,7 +18675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraTransform: {fileID: 808456569}
   weapon: {fileID: 2104823256}
-  weaponName: 
+  weaponName: Barret
   detectionRadius: 2
   player: {fileID: 986446588}
   weaponPrice: 2500

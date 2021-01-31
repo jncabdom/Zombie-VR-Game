@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-//using UnityEngine.Windows.Speech;
+using UnityEngine.Windows.Speech;
 using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    void Start() {
-        Debug.Log("chuchanga");
-    }
-   /* private KeywordRecognizer recognizer;
+    private KeywordRecognizer recognizer;
     private string[] keywords = new string[]{"ábrete"};
     public float detectionRadius = 2f;
     public GameObject player;
@@ -47,5 +44,5 @@ public class OpenDoor : MonoBehaviour
     public void stopRecognition() {
         recognizer.Stop();
         recognizer.Dispose();
-    }*/
+    }
 }
