@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+  void Awake() {
+    WeaponBuyLogic.OnSetWeapon += UpdateWeapon;
+    GunScript.OnSetBullets += UpdateBullets;
+  }
   private string health = "Health: ";
     // Start is called before the first frame update
-    void Start()
-    {
-    GunScript.OnSetWeapon += UpdateWeapon;
-    GunScript.OnSetBullets += UpdateBullets;
-    GunScript.OnSetWeaponName += UpdateWeapon;
-    }
+//    void Start()
+ //   {
+    //WeaponBuyLogic.OnSetWeapon += UpdateWeapon;
+    //GunScript.OnSetBullets += UpdateBullets;
+    //}
 
     // Update is called once per frame
     void Update()

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+public delegate void SetWeapon(GameObject newWeapon);
 public delegate void BuyBullets();
 
 public class WeaponBuyLogic : MonoBehaviour
 {
+    public static event SetWeapon OnSetWeapon;
     public static event BuyBullets OnBuyBullets;
     GameObject message;
     Text messageText;
@@ -81,6 +82,7 @@ public class WeaponBuyLogic : MonoBehaviour
                                                      player.transform.position.z), Quaternion.identity);
         gun.GetComponent<GunScript>().walled = false;
         gun.name = name;
+        OnSetWeapon(weapon);
         gun.transform.SetParent(CameraTransform);
         gun.transform.rotation = CameraTransform.rotation;
         gun.transform.localPosition = new Vector3(0.55f, -0.5f, 2f);

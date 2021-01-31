@@ -64,6 +64,7 @@ public class PlayerStats : MonoBehaviour
   }
 
   public void destroyWeapon() {
+    Debug.Log(GameObject.Find(GetComponent<Transform>().GetChild(0).GetChild(0).GetChild(2).name));
     GameObject.Destroy(GameObject.Find(GetComponent<Transform>().GetChild(0).GetChild(0).GetChild(2).name));
   }
 }

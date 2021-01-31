@@ -2,14 +2,11 @@ using System.Collections;
 using UnityEngine;
 
 public delegate void SetBullets(int magazineBullets, int bullets);
-public delegate void SetWeapon(GameObject newWeapon);
-public delegate void SetWeaponName(string name);
 
 public class GunScript : MonoBehaviour
 {
     public static event SetBullets OnSetBullets;
     public static event SetWeapon OnSetWeapon;
-    public static event SetWeaponName OnSetWeaponName;
 
     public float damage = 10f;
     public float range = 100f;
@@ -36,7 +33,6 @@ public class GunScript : MonoBehaviour
         WeaponBuyLogic.OnBuyBullets += FillBullets;
         audio = GetComponents<AudioSource>();
         anim = GetComponent<Animation>();
-        OnSetWeapon(gameObject);
         FillBullets();
     }
 
