@@ -4,20 +4,37 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-  public static float health = 100;
+  public float maxHealth = 100f;
+  public static float health = 100f;
   public static int money = 400;
   public static float reloadSpeed = 1f;
   public static float damageMultiplier = 1f;
   public static float recoverySpeed = 1f;
+  public float recoverAmount = 100f;
+  public float recoverCooldown = 2f;
+  private bool isHealing = false;
   public GameObject weapon;
 
   private void Start() {
-    health = 100;
     BuyDoor.OnDecreaseMoney += DecreaseMoney;
     BuyDoor.OnEnoughMoney += EnoughMoney;
     MoveTowardsPlayer.OnDamagePlayer += Damage;
     GunScript.OnEarnMoney += IncreaseMoney;
     SonguiStats.OnEarnMoney += IncreaseMoney;
+  }
+
+  private void Update() {
+    if(!isHealing)
+      StartCoroutine(RecoverHealth());
+  }
+
+  IEnumerator RecoverHealth() {
+      isHealing = true;
+      while (health < maxHealth) {
+        health += recoverAmount * recoverySpeed;
+        yield return new WaitForSeconds(recoverCooldown);
+      } 
+      isHealing = false;
   }
 
   void IncreaseMoney(int amount) {
@@ -51,6 +68,8 @@ public class PlayerStats : MonoBehaviour
     BuyDoor.OnDecreaseMoney -= DecreaseMoney;
     BuyDoor.OnEnoughMoney -= EnoughMoney;
     MoveTowardsPlayer.OnDamagePlayer -= Damage;
+    GunScript.OnEarnMoney -= IncreaseMoney;
+    SonguiStats.OnEarnMoney -= IncreaseMoney;
   }
 
   public void increaseHealth(float amount) {

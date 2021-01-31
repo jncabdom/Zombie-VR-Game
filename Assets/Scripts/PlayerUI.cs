@@ -10,14 +10,7 @@ public class PlayerUI : MonoBehaviour
     GunScript.OnSetBullets += UpdateBullets;
   }
   private string health = "Health: ";
-    // Start is called before the first frame update
-//    void Start()
- //   {
-    //WeaponBuyLogic.OnSetWeapon += UpdateWeapon;
-    //GunScript.OnSetBullets += UpdateBullets;
-    //}
 
-    // Update is called once per frame
     void Update()
     {
       UpdateHealth();
