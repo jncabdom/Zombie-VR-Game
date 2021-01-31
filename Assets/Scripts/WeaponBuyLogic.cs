@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public delegate void BuyBullets();
+
 public class WeaponBuyLogic : MonoBehaviour
 {
+    public static event BuyBullets OnBuyBullets;
     GameObject message;
     Text messageText;
 
@@ -58,7 +62,7 @@ public class WeaponBuyLogic : MonoBehaviour
                 if(PlayerStats.money >= bulletsPrice) {
                     showMessage("bullets");
                     if(Input.GetButtonDown("Action")) {
-                        buyBullets();
+                        OnBuyBullets();
                     }
                 }
                 else showMessage("money");
@@ -76,13 +80,14 @@ public class WeaponBuyLogic : MonoBehaviour
                                                      player.transform.position.y + 1f,
                                                      player.transform.position.z), Quaternion.identity);
         gun.GetComponent<GunScript>().walled = false;
+        gun.name = name;
         gun.transform.SetParent(CameraTransform);
         gun.transform.rotation = CameraTransform.rotation;
         gun.transform.localPosition = new Vector3(0.55f, -0.5f, 2f);
     }
 
     void buyBullets() {
-        // TODO
+        
     }
 
     void showMessage(string msg) {

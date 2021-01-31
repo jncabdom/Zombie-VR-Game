@@ -12,10 +12,8 @@ public class PlayerStats : MonoBehaviour
   public GameObject weapon;
 
   private void Start() {
-    WeaponManager.OnDecreaseMoney += DecreaseMoney;
-    WeaponManager.OnEnoughMoney += EnoughMoney;
-    WeaponManager.OnSameWeapon += SameWeapon;
-    WeaponManager.OnSetWeapon += SetWeapon;
+    //WeaponManager.OnSameWeapon += SameWeapon;
+    //WeaponManager.OnSetWeapon += SetWeapon;
     BuyDoor.OnDecreaseMoney += DecreaseMoney;
     BuyDoor.OnEnoughMoney += EnoughMoney;
     MoveTowardsPlayer.OnDamagePlayer += Damage;
@@ -45,8 +43,9 @@ public class PlayerStats : MonoBehaviour
   }
 
   private void OnDisable() {
-    WeaponManager.OnDecreaseMoney -= DecreaseMoney;
-    WeaponManager.OnEnoughMoney -= EnoughMoney;
+    BuyDoor.OnDecreaseMoney -= DecreaseMoney;
+    BuyDoor.OnEnoughMoney -= EnoughMoney;
+    MoveTowardsPlayer.OnDamagePlayer -= Damage;
   }
 
   public void increaseHealth(float amount) {

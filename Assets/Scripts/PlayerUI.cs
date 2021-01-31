@@ -9,8 +9,9 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    WeaponManager.OnSetWeapon += UpdateWeapon;
-    WeaponManager.OnSetBullets += UpdateBullets;
+    GunScript.OnSetWeapon += UpdateWeapon;
+    GunScript.OnSetBullets += UpdateBullets;
+    GunScript.OnSetWeaponName += UpdateWeapon;
     }
 
     // Update is called once per frame
@@ -30,6 +31,10 @@ public class PlayerUI : MonoBehaviour
 
   void UpdateWeapon(GameObject weapon) {
     GameObject.Find("PlayerUI").GetComponent<Canvas>().transform.Find("WeaponName").GetComponent<Text>().text = weapon.name;
+  }
+
+  void UpdateWeapon(string weapon) {
+    GameObject.Find("PlayerUI").GetComponent<Canvas>().transform.Find("WeaponName").GetComponent<Text>().text = name;
   }
 
   void UpdateBullets(int magazineBullets, int bullets) {

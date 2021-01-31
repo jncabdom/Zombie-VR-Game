@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public delegate bool EnoughMoney(int price);
+public delegate void DecreaseMoney(int price);
+
 public class BuyDoor : MonoBehaviour
 {
     public Text messageText;
