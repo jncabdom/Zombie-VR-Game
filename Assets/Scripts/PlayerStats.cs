@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
   public GameObject weapon;
 
   private void Start() {
+    health = 100;
     WeaponManager.OnDecreaseMoney += DecreaseMoney;
     WeaponManager.OnEnoughMoney += EnoughMoney;
     WeaponManager.OnSameWeapon += SameWeapon;
