@@ -12,8 +12,7 @@ public class PlayerStats : MonoBehaviour
   public GameObject weapon;
 
   private void Start() {
-    //WeaponManager.OnSameWeapon += SameWeapon;
-    //WeaponManager.OnSetWeapon += SetWeapon;
+    health = 100;
     BuyDoor.OnDecreaseMoney += DecreaseMoney;
     BuyDoor.OnEnoughMoney += EnoughMoney;
     MoveTowardsPlayer.OnDamagePlayer += Damage;
@@ -65,6 +64,6 @@ public class PlayerStats : MonoBehaviour
   }
 
   public void destroyWeapon() {
-    GameObject.Destroy(GameObject.Find(GetComponent<Transform>().GetChild(0).GetChild(0).GetChild(1).name));
+    GameObject.Destroy(GameObject.Find(GetComponent<Transform>().GetChild(0).GetChild(0).GetChild(2).name));
   }
 }

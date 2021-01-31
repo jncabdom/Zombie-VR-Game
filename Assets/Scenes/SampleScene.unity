@@ -7741,6 +7741,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368361281}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &371987523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1487366820791118, guid: e2a9c85c462da454ca9bf8f3f5a706f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 254107245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &371987524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371987523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea7e9d928d9d9c42a98ce7063f9f13c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &375576300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5748890740538168725, guid: f57b1021c89e6ff4784ab30a661af168,
@@ -10385,7 +10403,6 @@ MonoBehaviour:
   - {fileID: 107859497}
   - {fileID: 745177262}
   - {fileID: 1055705106}
-  round: 1
   songuisPerRound: 4
   remainingSonguis: 0
   maxWaitTime: 5
