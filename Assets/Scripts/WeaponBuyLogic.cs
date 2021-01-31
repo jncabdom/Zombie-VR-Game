@@ -15,7 +15,7 @@ public class WeaponBuyLogic : MonoBehaviour
 
     public Transform CameraTransform;
     public GameObject weapon;
-    public string name;
+    public string weaponName;
 
     // Player Detection
     public float detectionRadius = 2f;
@@ -81,7 +81,7 @@ public class WeaponBuyLogic : MonoBehaviour
                                                      player.transform.position.y + 1f,
                                                      player.transform.position.z), Quaternion.identity);
         gun.GetComponent<GunScript>().walled = false;
-        gun.name = name;
+        gun.name = weaponName;
         OnSetWeapon(weapon);
         gun.transform.SetParent(CameraTransform);
         gun.transform.rotation = CameraTransform.rotation;
@@ -95,10 +95,10 @@ public class WeaponBuyLogic : MonoBehaviour
     void showMessage(string msg) {
         switch(msg) {
             case "weapon":
-                messageText.text = "Press Action to buy " + name + "(" + weaponPrice + ")";
+                messageText.text = "Press Action to buy " + weaponName + "(" + weaponPrice + ")";
                 break;
             case "bullets":
-                messageText.text = "Press Action to buy " + name + " bullets (" + weaponPrice + ")";
+                messageText.text = "Press Action to buy " + weaponName + " bullets (" + weaponPrice + ")";
                 break;
             case "money":
                 messageText.text = "Insufficient funds";
