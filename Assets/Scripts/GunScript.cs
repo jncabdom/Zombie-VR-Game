@@ -34,6 +34,7 @@ public class GunScript : MonoBehaviour
     void Start()
     {
         WeaponBuyLogic.OnBuyBullets += FillBullets;
+        PlayerStats.OnIncreaseMagazine += IncreaseMagazine;
         audio = GetComponents<AudioSource>();
         anim = GetComponent<Animation>();
         FillBullets();
@@ -88,6 +89,13 @@ public class GunScript : MonoBehaviour
                 }
             }
        }
+    }
+
+
+    void IncreaseMagazine(float amount) {
+        magazineBullets *= (int)amount;
+        currentMagazineBullets = magazineBullets;
+        OnSetBullets(currentMagazineBullets, currentBullets);
     }
 
     void Reload() {

@@ -55,7 +55,7 @@ public class PerkMachineLogic : MonoBehaviour
                 playerScript.increaseDmg(1.5f);
             break;
             case "Speed Cola":
-                playerScript.increaseReloadSpeed(1.5f);
+                playerScript.increaseMagazineSize(2f);
             break;
             case "JuggerNog":
                 playerScript.increaseHealth(1.5f);

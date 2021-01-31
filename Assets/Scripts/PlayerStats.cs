@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void IncreaseMagazine(float amount);
+
 public class PlayerStats : MonoBehaviour
 {
+  public static event IncreaseMagazine OnIncreaseMagazine;
+
   public float maxHealth = 100f;
   public static float health = 100f;
   public static int money = 10000;
-  public static float reloadSpeed = 1f;
+  public static float magazineSize = 1f;
   public static float damageMultiplier = 1f;
   public static float recoverySpeed = 1f;
   public float recoverAmount = 100f;
@@ -80,8 +84,9 @@ public class PlayerStats : MonoBehaviour
     damageMultiplier *= amount;
   }
 
-  public void increaseReloadSpeed(float amount) {
-    reloadSpeed *= amount;
+  public void increaseMagazineSize(float amount) {
+    magazineSize *= amount;
+    OnIncreaseMagazine(magazineSize);
   }
   
   public void increaseRecovery(float amount) {
