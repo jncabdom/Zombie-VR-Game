@@ -3,6 +3,8 @@ using System.Collections.Generic;
 //using UnityEngine.Windows.Speech;
 using UnityEngine;
 
+// Este script se utiliza para abrir la puerta en Windows a través de la voz, como hemos desarrollado la aplicación para 
+// Android se encuentra enteramente comentado
 public class OpenDoor : MonoBehaviour
 {/*
     private KeywordRecognizer recognizer;

@@ -4,33 +4,36 @@ using UnityEngine;
 public delegate void SetBullets(int magazineBullets, int bullets);
 public delegate void EarnMoney(int amount);
 
+
+// Se encarga de que el arma del jugador pueda disparar, comprueba si ha disparado a un zombie y de recargar 
 public class GunScript : MonoBehaviour
 {
-    public static event SetBullets OnSetBullets;
-    public static event SetWeapon OnSetWeapon;
-    public static event EarnMoney OnEarnMoney;
+    public static event SetBullets OnSetBullets;                // Actualiza las balas en el UI
+    public static event SetWeapon OnSetWeapon;                  // Actualiza el arma en el UI
+    public static event EarnMoney OnEarnMoney;                  // Al golpear un zombie aumenta el dinero del jugador
 
-    public float damage = 10f;
-    public float range = 100f;
-    public float cadence = 0.3f;
+    public float damage = 10f;                                  // Daño del arma
+    public float range = 100f;                                  // Alcance
+    public float cadence = 0.3f;                                // Cadencia
 
-    bool canShoot = true;
-    public bool walled = false;
+    bool canShoot = true;                                       // Se utiliza para controlar la cadencia del arma
+    public bool walled = false;                                 // Indica si el arma se encuentra en la pared o no
 
-    public Camera fpsCam;
-    public ParticleSystem muzzleFlash;
+    public Camera fpsCam;                                       // Cámara del jugador
+    public ParticleSystem muzzleFlash;                          // Particulas al disparar
 
-    AudioSource[] audio;
-    Animation anim;
-    public GameObject blood;
-    public int amount = 10;
+    AudioSource[] audio;                                        // Audios de recarga y disparo
+    Animation anim;                                             // Animación de disparo
+    public GameObject blood;                                    // Partícula de sangre que se crea al golpear al zombie
+    public int amount = 10;                                     // Cantidad de dinero que se le aumenta al jugador por disparo acertado
 
     // Bullets
-    public int magazineBullets = 24;
-    public int bullets = 64;
-    private int currentBullets;
-    private int currentMagazineBullets;
+    public int magazineBullets = 24;                            // Tamaño del cargador
+    public int bullets = 64;                                    // Total de balas que posee el arma
+    private int currentBullets;                                 // Total de balas actual del arma
+    private int currentMagazineBullets;                         // Total de balas en el cargador actualmente
 
+    // Una vez se compra un arma se le llena de balas  y obtenemos los audios y la animación
     void Start()
     {
         WeaponBuyLogic.OnBuyBullets += FillBullets;
@@ -41,7 +44,8 @@ public class GunScript : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    // Si el arma no se encuentra en la pared y se pulsa el botón de disparar, se llama a la corrutina "shootWait", además comprobamos si 
+    // el jugador quiere recargar
     void Update()
     {
         if(!walled) {
@@ -58,6 +62,7 @@ public class GunScript : MonoBehaviour
         walled = false;
     }
 
+    // llama a shoot y estable una cadencia una cadencia
     IEnumerator shootWait() {
         canShoot = false;
         shoot();
@@ -65,12 +70,15 @@ public class GunScript : MonoBehaviour
         canShoot = true;
     }
 
+    // Llena de balas el arma y actualiza los valores en el UI
     void FillBullets() {
         currentBullets = bullets;
         currentMagazineBullets = magazineBullets;
         OnSetBullets(currentMagazineBullets, currentBullets);
     }
 
+    // Si el cargador no está vacio, quitamos una bala y actualizamos los valores, reproducimos las animaciones y el sonido, por último comprobamos que si golpeamos a un 
+    // zombie le hagamos daño y que el jugador gane dinero.
     void shoot() {
         if (!MagazineEmpty()) {
             currentMagazineBullets--;
@@ -91,13 +99,15 @@ public class GunScript : MonoBehaviour
        }
     }
 
-
+    // Cuando el jugador consume la ventaja "speedCola" el tamaño del cargador se duplicará y además obtendrá un cargado lleno de balas
     void IncreaseMagazine(float amount) {
         magazineBullets *= (int)amount;
         currentMagazineBullets = magazineBullets;
         OnSetBullets(currentMagazineBullets, currentBullets);
     }
 
+    // Si el jugador pulsa el botón de "Action" recargará el arma mientras tenga balas, además se reproducirá el audio correspondiente
+    // al final actualizamos las balas en el UI
     void Reload() {
         if (Input.GetButtonDown("Action") && !MagazineFull()) {
         audio[1].Play();
@@ -119,19 +129,22 @@ public class GunScript : MonoBehaviour
       }
     }
 
+   // Devuelve verdadero si el número de balas restantes es mayor o igual al tamaño del cargador
    bool EnoughForMagazine() {
     return currentBullets >= magazineBullets;
   }
 
+  // Devuelve verdadero si el cargador está vacio
   bool MagazineEmpty() {
-    Debug.Log(currentMagazineBullets);
     return currentMagazineBullets == 0;
   }
 
+  // Devuelve verdadero si el cargador está lleno
   bool MagazineFull() {
     return currentMagazineBullets == magazineBullets;
   }
 
+  // devuelve verdadero si el jugador tiene las balas tanto del cargador como el total lleno
   bool FullOfBullets() {
     return currentBullets == bullets && MagazineFull();
   }

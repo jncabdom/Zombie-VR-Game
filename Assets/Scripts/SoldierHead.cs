@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Controla a través del acelerómetro la  rotación del gameObject
 public class SoldierHead : MonoBehaviour
 {
-    // Update is called once per frame
+    // Rota el transform del gameObject asociado en función del acelerómetro
     void Update()
     {
         Debug.Log(new Vector3(Input.acceleration.y, Input.acceleration.x, 0));

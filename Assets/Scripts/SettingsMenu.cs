@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+// Establece las distintas configuraciones del menú de opciones
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer;
-
-    public TMPro.TMP_Dropdown resolutionDropdown;
+    public AudioMixer audioMixer;                       // Audio mixer para controlar el volumen de los sonidos
+    public TMPro.TMP_Dropdown resolutionDropdown;       // Desplegable con las resoluciones
 
     Resolution[] resolutions;
 
+    // Obtenemos las distintas resoluciones para la pantalla actual y las añadimos al desplegable de resoluciones
+    // y recogemos la resolución elegida
     void Start() {
     
         resolutions = Screen.resolutions;
@@ -31,18 +33,22 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    // Controlamos el volumen del juego
     public void SetVolume(float volume) {
         audioMixer.SetFloat("volume", volume);
     }
 
+    // Establecemos la calidad de renderizado del juego
     public void SetQuality(int qualityIndex) {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
+    // Activamos la opción de pantalla completa
     public void SetFullScreen(bool isFullScreen) {
         Screen.fullScreen = isFullScreen;
     }
 
+    // Dado un index de una resoluciones establecemos la resolución de la pantalla
     public void SetResolution(int resolutionIndex) {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);

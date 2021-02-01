@@ -6,36 +6,39 @@ using UnityEngine.UI;
 public delegate void SetWeapon(GameObject newWeapon);
 public delegate void BuyBullets();
 
+
+// Controla la lógica de la compra de armas 
 public class WeaponBuyLogic : MonoBehaviour
 {
-    public static event SetWeapon OnSetWeapon;
-    public static event BuyBullets OnBuyBullets;
-    GameObject message;
+    public static event SetWeapon OnSetWeapon;          // Evento para cambiar el arma del jugador
+    public static event BuyBullets OnBuyBullets;        // Evento para llenar de balas el arma
+    GameObject message;                                 // Mensaje de compra de arma o balas 
     Text messageText;
 
-    public Transform CameraTransform;
-    public GameObject weapon;
-    public string weaponName;
+    public Transform CameraTransform;                   // Transform de la cámara para obtener la rotación de esta
+    public GameObject weapon;                           // Arma que queremos comprar
+    public string weaponName;                           // Nombre del arma
 
     // Player Detection
-    public float detectionRadius = 2f;
-    public GameObject player;
+    public float detectionRadius = 2f;                  // Radio dentro del cual se considera que se encuentra dentro de la zona de compra
+    public GameObject player;                           // Jugador 
 
-    // Prices
-    public int weaponPrice = 100;
-    public int bulletsPrice = 25;
+    // Prices   
+    public int weaponPrice = 100;                       // Precio del arma
+    public int bulletsPrice = 25;                       // Precio de las balas
 
-    bool bought = false;
+    bool bought = false;                                // Controla si el arma se ha comprado
 
-    bool weaponMsg = true;
-    bool bulletsMsg = false;
-    bool insufficientMoney = false;
+    bool weaponMsg = true;                              // Muestra el mensaje de comprar arma
+    bool bulletsMsg = false;                            // Muestra el mensaje de comprar balas
+    bool insufficientMoney = false;                     // Muestra el mensaje de dinero insuficiente
 
+    // Devuelve verdadero si el jugador se encuentra cerca de la zona de compra(arma)
     bool onRange(GameObject target) {
         return (Vector3.Distance(transform.position, target.transform.position) < detectionRadius);
     }
 
-    // Start is called before the first frame update
+    // Obtenemos el texto de la UI y el jugador
     void Start()
     {
         GameObject reference = GameObject.Find("InteractionText");
@@ -46,7 +49,10 @@ public class WeaponBuyLogic : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
+    // SI el jugador está dentro del rango y no ha comprado el arma, tiene suficiente dinero se muestra un mensaje
+    // Si además pulsa el botón de acción compra el arma de la pared, si no tiene suficiente muestra el mensaje
+    // de dinero insuficiente, en caso de que la haya comprado se realiza de forma parecida pero mostrando el mensaje
+    // de comprar balas
     void Update()
     {
         if(onRange(player)) {
@@ -72,6 +78,8 @@ public class WeaponBuyLogic : MonoBehaviour
         else showMessage("none");
     }
 
+    // Al comprar un arma Instanciamos el arma y la situamos dentro de la cámara para que obtenga la rotación y movimiento de esta,
+    // eliminamos el arma que anteriormente tenía el jugador
     void buyWeapon() {
         bought = true;
         PlayerStats.money -= weaponPrice;
@@ -88,10 +96,8 @@ public class WeaponBuyLogic : MonoBehaviour
         gun.transform.localPosition = new Vector3(0.55f, -0.5f, 2f);
     }
 
-    void buyBullets() {
-        
-    }
-
+    // Mostramos el mensaje correspondiente dependiendo de los valores booleanos 
+    // Establecidos como variables de la clase
     void showMessage(string msg) {
         switch(msg) {
             case "weapon":

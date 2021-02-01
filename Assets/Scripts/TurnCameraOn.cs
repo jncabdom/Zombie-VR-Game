@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Enciende la cámara, mostrándola en una televisión en una de las salas
 public class TurnCameraOn : MonoBehaviour {
     Renderer renderer;
     WebCamTexture webcamTexture;
 
-    // if The user authorize to use the camera then we turn the camera on
+    // Obtenemos el Renderer del objeto y le aplicamos la textura webcamTexture
     void Start() {
         renderer = GetComponent<Renderer>();
         webcamTexture = new WebCamTexture();
