@@ -18511,7 +18511,6 @@ GameObject:
   - component: {fileID: 1071996666}
   - component: {fileID: 1071996665}
   - component: {fileID: 1071996664}
-  - component: {fileID: 1071996663}
   m_Layer: 0
   m_Name: DEVDOOR
   m_TagString: Untagged
@@ -18519,20 +18518,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1071996663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071996662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ea7e9d928d9d9c42a98ce7063f9f13c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 5
-  player: {fileID: 986446588}
 --- !u!64 &1071996664
 MeshCollider:
   m_ObjectHideFlags: 0
