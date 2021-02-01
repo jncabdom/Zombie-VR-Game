@@ -80,9 +80,7 @@ Para distribuirnos las tareas creamos una lista en la aplicación *Zenkit*. Crea
 
 ## Ejecución del programa
 
-Se puede visualizar una pequeña demostración de la ejecución del juego en un PC en [este vídeo]()
-
-**Por otra parte [en este enlace]() se puede visualizar la ejecución del juego en un dispositivo móvil Android. ???????????????????????????**
+Por último, se puede visualizar una pequeña demostración de la ejecución del juego en un PC en [este vídeo](https://www.youtube.com/watch?v=LPc7DA-6_7I&feature=emb_logo)
 
 
 
